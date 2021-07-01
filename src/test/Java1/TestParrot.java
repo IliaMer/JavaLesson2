@@ -14,7 +14,6 @@ public class TestParrot {
         jaco1.weight = 550.0;
 
 
-
         Parrot jaco2 = new Parrot();
 
         jaco2.name = "Игорёк";
