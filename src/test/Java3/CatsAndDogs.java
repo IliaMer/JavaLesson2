@@ -38,7 +38,7 @@ public class CatsAndDogs {
 
 
         Dog dog1 = new Dog();
-        dog1.setName("Коротыш");
+        dog1.setName("Коротышка");
         dog1.setAge(6);
         dog1.setWeight(53);
 
@@ -59,25 +59,16 @@ public class CatsAndDogs {
         dogs.add(dog3);
         dogs.add(dog3);
         dogs.add(dog3);
-        dogs.add(dog3);
-        dogs.add(dog3);
-        dogs.add(dog3);
-        dogs.add(dog3);
-        dogs.add(dog3);
-        dogs.add(dog3);
+
 
         Set set2 = new HashSet(dogs);
 
         Map map = new HashMap();
-        map.put("Собака1", dog1);
-        map.put("Собака2", dog2);
-        map.put("Собака3", dog3);
-        map.put("Кошечка1", cat1);
-        map.put("Кошечка2", cat2);
-        map.put("Кошечка3", cat3);
+        map.put("Собака", set2);
+        map.put("Кошечка", set1);
 
 
-        System.out.println(map.get("Собака1"));
+        System.out.println(map.get("Собака"));
 
 
     }
