@@ -18,7 +18,7 @@ public class Dog {
         return name;
     }
 
-    public static void setName(String name) {
+    public void setName(String name) {
         Dog.name = name;
     }
 

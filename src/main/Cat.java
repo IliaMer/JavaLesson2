@@ -37,4 +37,9 @@ public class Cat {
     public static void setWeight(int weight) {
         Cat.weight = weight;
     }
+
+    @Override
+    public String toString() {
+        return "По кличке " + name;
+    }
 }
