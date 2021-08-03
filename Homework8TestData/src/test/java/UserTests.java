@@ -8,27 +8,23 @@ import java.util.logging.Logger;
 
 public class UserTests {
 
+    final String FULLNAME_REGEXP = "^[A-Z][a-z]{6,}";
+
     @Test
-    void defaultUser() {
+    void testInvalidUserFullName() {
+        FullName fullName = new FullName("Rakov", "safokls", "2321");
+        Assertions.assertFalse(fullName.getFirstName().matches(FULLNAME_REGEXP));
+        Assertions.assertFalse(fullName.getLastName().matches(FULLNAME_REGEXP));
+        Assertions.assertFalse(fullName.getMiddleName().matches(FULLNAME_REGEXP));
+
+    }
+
+    @Test
+    void testGeneratedFullName() {
         User user = new User();
-        FullName fullName = new FullName("", "", "");
-        Assertions.assertTrue(user.toString().contains(fullName.getNameStr()));
+        Assertions.assertTrue(user.getName().getFirstName().matches(FULLNAME_REGEXP));
+        Assertions.assertTrue(user.getName().getLastName().matches(FULLNAME_REGEXP));
+        Assertions.assertTrue(user.getName().getMiddleName().matches(FULLNAME_REGEXP));
     }
 
-    @Test
-    void customUser() {
-        String name = "fio";
-        String login = "login";
-        String pass = "pass";
-        Date dateUser = new Date();
-        LocalDateTime localDateTimeUser = LocalDateTime.now();
-
-        User user = new User(name,dateUser,localDateTimeUser,login,pass);
-
-        Assertions.assertEquals(user.getName(),name);
-        Assertions.assertEquals(user.getBirthDay(),dateUser);
-        Assertions.assertEquals(user.getRegistrationDate(),localDateTimeUser);
-        Assertions.assertEquals(user.getLogin(),login);
-        Assertions.assertEquals(user.getPassword(),pass);
-    }
 }

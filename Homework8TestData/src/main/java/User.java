@@ -5,15 +5,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Random;
 
 public class User {
-    private String name;
+    private FullName name;
     private Date birthDay;
     private LocalDateTime registrationDate;
     private String login;
     private String password;
 
-    public User(String name, Date birthDay, LocalDateTime registrationDate, String login, String password) {
+    public User(FullName name, Date birthDay, LocalDateTime registrationDate, String login, String password) {
         this.name = name;
         this.birthDay = birthDay;
         this.registrationDate = registrationDate;
@@ -51,16 +52,13 @@ public class User {
         }
     }
 
-    private String generateRandomName() {
-        String firstName = "";
-        String lastName = "";
-        String middleName = "";
-        return new FullName(lastName, firstName, middleName).getNameStr();
+    private FullName generateRandomName() {
+        String[] firstNames = {"Igorek", "Vasilii", "Romka", "Vitalya"};
+        String[] lastNames = {"Igorek", "Vasilii", "Romka", "Vitalya"};
+        String[] middleNames = {"Igorek", "Vasilii", "Romka", "Vitalya"};
+        return new FullName (firstNames[new Random().nextInt(firstNames.length)], lastNames[new Random().nextInt(lastNames.length)],middleNames [new Random().nextInt(middleNames.length)]);
     }
 
-    private String generateRandomName(FullName fullName) {
-        return fullName.getLastName() + " " + fullName.getFirstName() + "." + fullName.getMiddleName();
-    }
 
     private LocalDateTime generateRandomRegistrationDate() {
         return LocalDateTime.now();
@@ -78,7 +76,7 @@ public class User {
         return RandomStringUtils.randomAlphanumeric(count);
     }
 
-    public String getName() {
+    public FullName getName() {
         return name;
     }
 
