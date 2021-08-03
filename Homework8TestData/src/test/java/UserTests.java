@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 public class UserTests {
 
     final String FULLNAME_REGEXP = "^[A-Z][a-z]{6,}";
+    final String LOGIN_REGEXP = "\"^.{2,6}$\"";
 
     @Test
     void testInvalidUserFullName() {
@@ -27,4 +28,33 @@ public class UserTests {
         Assertions.assertTrue(user.getName().getMiddleName().matches(FULLNAME_REGEXP));
     }
 
+
+    @Test
+    void testLogin() {
+        User user = new User();
+        Assertions.assertFalse(user.getLogin().isEmpty());
+        Assertions.assertEquals(6, user.getLogin().length());
+        Assertions.assertFalse(user.getLogin().matches(LOGIN_REGEXP));
+    }
+
+    @Test
+    void  testPassword(){
+        User user = new User();
+        Assertions.assertFalse(user.getPassword().isEmpty());
+        Assertions.assertEquals(10, user.getPassword().length());
+        Assertions.assertFalse(user.getPassword().matches(LOGIN_REGEXP));
+    }
+
+    @Test
+    void testregistrationDate() {
+        User user = new User();
+        Assertions.assertNotNull(user.getRegistrationDate());
+    }
+
+    @Test
+    void testbirthday() {
+        User user = new User();
+        Assertions.assertNotNull(user.getBirthDay());
+        Assertions.assertFalse(user.getPassword().matches("yyyy-MM-dd"));
+    }
 }
