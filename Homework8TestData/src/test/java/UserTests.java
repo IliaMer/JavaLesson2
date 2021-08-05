@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.jws.soap.SOAPBinding;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.logging.Logger;
@@ -8,8 +9,9 @@ import java.util.logging.Logger;
 
 public class UserTests {
 
-    final String FULLNAME_REGEXP = "^[A-Z][a-z]{6,}";
-    final String LOGIN_REGEXP = "\"^.{2,6}$\"";
+    final String FULLNAME_REGEXP = "^[A-Z][a-z]*$";
+    final String PASSWORD_REGEXP = "(^[a-z]*([A-Z]{1})[a-z]*([0-9]{1})[a-z]*$)|(^[a-z]*([0-9]{1})[a-z]*([A-Z]{1})[a-z]*$)";
+    final String BIRTHDATE_REGEXP = "^\\d{4}-\\d{2}-\\d{2}$";
 
     @Test
     void testInvalidUserFullName() {
@@ -33,28 +35,29 @@ public class UserTests {
     void testLogin() {
         User user = new User();
         Assertions.assertFalse(user.getLogin().isEmpty());
-        Assertions.assertEquals(6, user.getLogin().length());
-        Assertions.assertFalse(user.getLogin().matches(LOGIN_REGEXP));
+        Assertions.assertEquals(User.getLengthLogin(), user.getLogin().length());
     }
 
     @Test
     void  testPassword(){
         User user = new User();
         Assertions.assertFalse(user.getPassword().isEmpty());
-        Assertions.assertEquals(10, user.getPassword().length());
-        Assertions.assertFalse(user.getPassword().matches(LOGIN_REGEXP));
+        int length = user.getPassword().length();
+        Assertions.assertTrue((User.getMinLengthPassword() <= length) && (length < User.getMaxLengthPassword()));
+        Assertions.assertTrue(user.getPassword().matches(PASSWORD_REGEXP));
     }
 
     @Test
     void testregistrationDate() {
         User user = new User();
         Assertions.assertNotNull(user.getRegistrationDate());
+        System.out.println(user);
     }
 
     @Test
     void testbirthday() {
         User user = new User();
         Assertions.assertNotNull(user.getBirthDay());
-        Assertions.assertFalse(user.getPassword().matches("yyyy-MM-dd"));
+        Assertions.assertTrue(user.getBirthDay().matches(BIRTHDATE_REGEXP));
     }
 }

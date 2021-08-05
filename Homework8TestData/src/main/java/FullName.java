@@ -42,4 +42,13 @@ public class FullName {
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
+
+    @Override
+    public String toString() {
+        return "FullName{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                '}';
+    }
 }
