@@ -18,8 +18,8 @@ public class User {
 
     private static int minLengthPassword = 6;
     private static int maxLengthPassword = 10;
-
     private static int lengthLogin = 6;
+    private static int maxAge = 102;
 
     public User(FullName name, String birthDay, LocalDateTime registrationDate, String login, String password) {
         this.name = name;
@@ -154,5 +154,13 @@ public class User {
 
     public static void setLengthLogin(int lengthLogin) {
         User.lengthLogin = lengthLogin;
+    }
+
+    public static int getMaxAge() {
+        return maxAge;
+    }
+
+    public static void setMaxAge(int maxAge) {
+        User.maxAge = maxAge;
     }
 }

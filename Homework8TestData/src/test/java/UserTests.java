@@ -2,7 +2,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.jws.soap.SOAPBinding;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -48,16 +50,20 @@ public class UserTests {
     }
 
     @Test
-    void testregistrationDate() {
+    void testRegistrationDate() {
         User user = new User();
         Assertions.assertNotNull(user.getRegistrationDate());
         System.out.println(user);
     }
 
     @Test
-    void testbirthday() {
+    void testBirthday() {
         User user = new User();
         Assertions.assertNotNull(user.getBirthDay());
         Assertions.assertTrue(user.getBirthDay().matches(BIRTHDATE_REGEXP));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(user.getBirthDay(), dtf);
+        date = date.plusYears(User.getMaxAge());
+        Assertions.assertTrue(date.isAfter(LocalDate.now()));
     }
 }
