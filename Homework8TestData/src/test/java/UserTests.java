@@ -17,7 +17,7 @@ public class UserTests {
 
     @Test
     void testInvalidUserFullName() {
-        FullName fullName = new FullName("Rakov", "safokls", "2321");
+        FullName fullName = new FullName("532", "ls", "2321");
         Assertions.assertFalse(fullName.getFirstName().matches(FULLNAME_REGEXP));
         Assertions.assertFalse(fullName.getLastName().matches(FULLNAME_REGEXP));
         Assertions.assertFalse(fullName.getMiddleName().matches(FULLNAME_REGEXP));
@@ -66,4 +66,5 @@ public class UserTests {
         date = date.plusYears(User.getMaxAge());
         Assertions.assertTrue(date.isAfter(LocalDate.now()));
     }
+
 }

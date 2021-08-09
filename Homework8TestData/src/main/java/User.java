@@ -15,6 +15,8 @@ public class User {
     private LocalDateTime registrationDate;
     private String login;
     private String password;
+    private UserAddress address;
+
 
     private static int minLengthPassword = 6;
     private static int maxLengthPassword = 10;
@@ -27,6 +29,7 @@ public class User {
         this.registrationDate = registrationDate;
         this.login = login;
         this.password = password;
+        this.address = address;
     }
 
     public User() {
@@ -35,16 +38,18 @@ public class User {
         this.registrationDate = generateRandomRegistrationDate();
         this.login = generateRandomLogin();
         this.password = generateRandomPassword();
+        this.address = generateRandomUserAddress();
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
-                ", birthDay=" + birthDay +
+                "name=" + name +
+                ", birthDay='" + birthDay + '\'' +
                 ", registrationDate=" + registrationDate +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", address=" + address +
                 '}';
     }
 
@@ -57,7 +62,7 @@ public class User {
         int month = monthDataGenerator.nextInt(1, 12);
         int year = yearDataGenerator.nextInt(1918, 2020);
 
-        return dtf.format( LocalDate.of(year, month, day));
+        return dtf.format(LocalDate.of(year, month, day));
 
     }
 
@@ -66,8 +71,8 @@ public class User {
         String[] lastNames = {"Bubin", "Zrachkov", "Privetov", "Kryuger"};
         String[] middleNames = {"Petrovich", "Sanich", "Romich", "Vitalich"};
         return new FullName(firstNames[new Random().nextInt(firstNames.length)],
-                            lastNames[new Random().nextInt(lastNames.length)],
-                            middleNames[new Random().nextInt(middleNames.length)]);
+                lastNames[new Random().nextInt(lastNames.length)],
+                middleNames[new Random().nextInt(middleNames.length)]);
     }
 
 
@@ -80,7 +85,7 @@ public class User {
     }
 
     private String generateRandomPassword() {
-        int lengthOfPassword =  getRandomNumber(minLengthPassword, maxLengthPassword);
+        int lengthOfPassword = getRandomNumber(minLengthPassword, maxLengthPassword);
         String digit = RandomStringUtils.randomNumeric(1);
         String upperLetter = RandomStringUtils.randomAlphabetic(1).toUpperCase();
         String lowerLetter = RandomStringUtils.randomAlphabetic(lengthOfPassword - 2).toLowerCase();
@@ -111,6 +116,17 @@ public class User {
         return RandomStringUtils.randomAlphanumeric(count);
     }
 
+    private UserAddress generateRandomUserAddress() {
+        String[] city = {"Sevastopol", "Innopolis", "Moscow", "Piter", "London", "Kazan"};
+        String[] street = {"Prospekt Pobedi", "Proletarskaya", "Lenina", "Ushakova", "Nakhimova"};
+        String[] houseNumber = {"33", "2", "12", "54", "21", "54", "99"};
+        String[] apartmentNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        return new UserAddress(city[new Random().nextInt(city.length)],
+                street[new Random().nextInt(street.length)],
+                houseNumber[new Random().nextInt(houseNumber.length)],
+                apartmentNumber[new Random().nextInt(apartmentNumber.length)]);
+    }
+
 
     public FullName getName() {
         return name;
@@ -130,6 +146,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public UserAddress getAddress() {
+        return address;
     }
 
     public static int getMinLengthPassword() {
