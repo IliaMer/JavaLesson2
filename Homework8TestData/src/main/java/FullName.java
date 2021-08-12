@@ -1,9 +1,11 @@
-public class FullName {
+import java.io.Serializable;
+
+public class FullName implements Serializable {
     private String firstName;
     private String lastName;
     private String middleName;
 
-    public FullName(String lastName, String firstName, String middleName) {
+    public FullName (String lastName, String firstName, String middleName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;

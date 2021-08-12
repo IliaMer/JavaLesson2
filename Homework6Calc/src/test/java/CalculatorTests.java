@@ -53,7 +53,7 @@ public class CalculatorTests {
     @Test
     @Tag("sub")
     public void testVichetanie() throws Exception {
-        Assertions.assertEquals(7, Calculator.sub(10, 3));
+        Assertions.assertEquals(9, Calculator.sub(10, 3));
     }
 
     @Test

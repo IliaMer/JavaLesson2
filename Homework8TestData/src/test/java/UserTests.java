@@ -2,10 +2,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.jws.soap.SOAPBinding;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -41,7 +45,7 @@ public class UserTests {
     }
 
     @Test
-    void  testPassword(){
+    void testPassword() {
         User user = new User();
         Assertions.assertFalse(user.getPassword().isEmpty());
         int length = user.getPassword().length();
@@ -67,4 +71,39 @@ public class UserTests {
         Assertions.assertTrue(date.isAfter(LocalDate.now()));
     }
 
+    @Test
+    void testUserWriter() {
+        Path path = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\users.txt");
+        ArrayList<User> userData = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            userData.add(user);
+        }
+        Writer.writeObjectsToFile(path, Collections.singletonList(userData));
+        try {
+            System.out.println(Files.readAllLines(Paths.get("users.txt")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    void testUserAddressesWriter() throws IOException, ClassNotFoundException {
+        Path pathUsers = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\usersByte.txt");
+        Path pathAddresses = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\addresses.txt");
+        ArrayList<User> userData = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            userData.add(user);
+        }
+        Writer.writeBytesToFile(pathUsers, Collections.singletonList(userData));
+        List<UserAddress> addresses = Reader.readBytesAddresses(pathUsers);
+        Writer.writeObjectsToFile(pathAddresses, Collections.singletonList(addresses));
+        try {
+            System.out.println(Files.readAllLines(pathAddresses));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
