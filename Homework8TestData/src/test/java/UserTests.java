@@ -1,16 +1,18 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.XMLMapperJackson;
+import utils.XMLMapperJavaxXml;
 
-import javax.jws.soap.SOAPBinding;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 public class UserTests {
@@ -90,8 +92,8 @@ public class UserTests {
 
     @Test
     void testUserAddressesWriter() throws IOException, ClassNotFoundException {
-        Path pathUsers = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\usersByte.txt");
-        Path pathAddresses = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\addresses.txt");
+        Path pathUsers = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\src\\target\\usersByte.txt");
+        Path pathAddresses = Paths.get("C:\\Merzliak\\JavaLessons\\Homework8TestData\\src\\target\\addresses.txt");
         ArrayList<User> userData = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             User user = new User();

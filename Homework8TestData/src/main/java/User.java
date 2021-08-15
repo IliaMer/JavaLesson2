@@ -2,6 +2,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.random.RandomDataGenerator;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,10 +13,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+
+@XmlRootElement(name="User")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class User implements Serializable {
     private FullName name;
     private String birthDay;
-    private LocalDateTime registrationDate;
+    private String registrationDate;
     private String login;
     private String password;
     private UserAddress address;
@@ -24,7 +31,7 @@ public class User implements Serializable {
     private static int lengthLogin = 6;
     private static int maxAge = 102;
 
-    public User(FullName name, String birthDay, LocalDateTime registrationDate, String login, String password) {
+    public User(FullName name, String birthDay, String registrationDate, String login, String password) {
         this.name = name;
         this.birthDay = birthDay;
         this.registrationDate = registrationDate;
@@ -41,6 +48,8 @@ public class User implements Serializable {
         this.password = generateRandomPassword();
         this.address = generateRandomUserAddress();
     }
+
+
 
     @Override
     public String toString() {
@@ -77,8 +86,8 @@ public class User implements Serializable {
     }
 
 
-    private LocalDateTime generateRandomRegistrationDate() {
-        return LocalDateTime.now();
+    private String generateRandomRegistrationDate() {
+        return String.valueOf(LocalDateTime.now());
     }
 
     private String generateRandomLogin() {
@@ -137,7 +146,7 @@ public class User implements Serializable {
         return birthDay;
     }
 
-    public LocalDateTime getRegistrationDate() {
+    public String getRegistrationDate() {
         return registrationDate;
     }
 
@@ -152,6 +161,8 @@ public class User implements Serializable {
     public UserAddress getAddress() {
         return address;
     }
+
+
 
     public static int getMinLengthPassword() {
         return minLengthPassword;

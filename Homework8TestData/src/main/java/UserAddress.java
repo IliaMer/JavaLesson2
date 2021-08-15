@@ -1,24 +1,26 @@
 import java.io.Serializable;
 
+
+
 public class UserAddress implements Serializable {
     private String city;
     private String street;
     private String houseNumber;
     private String apartmentNumber;
 
-    public UserAddress(String сity, String street, String houseNumber, String apartmentNumber) {
-        this.city = сity;
+    public UserAddress(String city, String street, String houseNumber, String apartmentNumber) {
+        this.city = city;
         this.street = street;
         this.houseNumber = houseNumber;
         this.apartmentNumber = apartmentNumber;
     }
 
-    public String getСity() {
+    public String getCity() {
         return city;
     }
 
-    public void setСity(String сity) {
-        this.city = сity;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getStreet() {
@@ -48,10 +50,12 @@ public class UserAddress implements Serializable {
     @Override
     public String toString() {
         return "Address{" +
-                "сity='" + city + '\'' +
+                "city='" + city + '\'' +
                 ", street='" + street + '\'' +
                 ", houseNumber='" + houseNumber + '\'' +
                 ", apartmentNumber='" + apartmentNumber + '\'' +
                 '}';
     }
+
+
 }

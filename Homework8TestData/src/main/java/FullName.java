@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 
 public class FullName implements Serializable {
@@ -29,6 +31,7 @@ public class FullName implements Serializable {
         return middleName;
     }
 
+    @JsonIgnore
     public String getNameStr() {
         return firstName + " " + lastName + " " + middleName;
     }
