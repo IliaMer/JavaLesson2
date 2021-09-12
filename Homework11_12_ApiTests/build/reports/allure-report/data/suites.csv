@@ -1,0 +1,5 @@
+"Status","Name","Duration in ms","Description"
+"passed","petParamsTests.PetTests.GetPetByIdTest","830",""
+"failed","petParamsTests.PetTests.CreatePetTest","5813",""
+"failed","petParamsTests.PetTests.PutPet","1639",""
+"passed","petParamsTests.PetTests.DeletePetTest","2441",""

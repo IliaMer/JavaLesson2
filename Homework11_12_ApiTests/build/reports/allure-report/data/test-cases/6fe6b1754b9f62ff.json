@@ -1,0 +1,53 @@
+{
+  "uid" : "6fe6b1754b9f62ff",
+  "name" : "GetPetByIdTest()",
+  "fullName" : "petParamsTests.PetTests.GetPetByIdTest",
+  "historyId" : "2bdaef78658c4226b90bcc3466eef8f4",
+  "time" : {
+    "start" : 1631432246272,
+    "stop" : 1631432247102,
+    "duration" : 830
+  },
+  "description" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "feature",
+    "value" : "Pet test"
+  }, {
+    "name" : "host",
+    "value" : "MSI"
+  }, {
+    "name" : "thread",
+    "value" : "7908@MSI.Test worker(12)"
+  }, {
+    "name" : "package",
+    "value" : "petParamsTests.PetTests"
+  }, {
+    "name" : "testClass",
+    "value" : "petParamsTests.PetTests"
+  }, {
+    "name" : "testMethod",
+    "value" : "GetPetByIdTest"
+  }, {
+    "name" : "suite",
+    "value" : "petParamsTests.PetTests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "6fe6b1754b9f62ff.json",
+  "parameterValues" : [ ]
+}

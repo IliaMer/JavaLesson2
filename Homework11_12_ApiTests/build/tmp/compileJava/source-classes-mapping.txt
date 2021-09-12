@@ -1,0 +1,8 @@
+petParams/Category.java
+ petParams.Category
+petParams/CreatePetResponseObject.java
+ petParams.CreatePetResponseObject
+petParams/Tags.java
+ petParams.Tags
+petParams/Pet.java
+ petParams.Pet
