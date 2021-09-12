@@ -1,11 +1,15 @@
 package petParamsTests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import petParams.Pet;
 
+
+@Feature("Pet test")
 public class PetTests {
 
     @Test
@@ -15,6 +19,7 @@ public class PetTests {
         Response response = RestAssured
                 .given()
                 .log().all()
+                .filter(new AllureRestAssured())
                 .contentType("application/json")
                 .body(actualPet)
                 .post("https://petstore.swagger.io/v2/pet");
@@ -71,6 +76,7 @@ public class PetTests {
         Response response = RestAssured
                 .given()
                 .log().all()
+                .filter(new AllureRestAssured())
                 .contentType("application/json")
                 .body(actualPet)
                 .post("https://petstore.swagger.io/v2/pet");
