@@ -41,7 +41,7 @@ public class JsonSchemaValidationTest {
 
     @RepeatedTest(3)
     void validateUserTest() {
-        Response response = RestAssured.get("https://petstore.swagger.io/v2/user/VOLODYA");
+        Response response = RestAssured.get("https://petstore.swagger.io/v2/user/user13");
         System.out.println(response.asString());
         response.then().body(matchesJsonSchemaInClasspath("getUserSchema.json").using(runJsonSchemaFactory()));
     }

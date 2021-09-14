@@ -1,5 +1,6 @@
 {
   "title": "User JSON Schema",
+  "description": "Get User by name",
   "type": "object",
   "required": [
     "id",
