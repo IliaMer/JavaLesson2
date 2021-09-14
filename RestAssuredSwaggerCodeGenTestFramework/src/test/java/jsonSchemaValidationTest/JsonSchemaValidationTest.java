@@ -49,25 +49,36 @@ public class JsonSchemaValidationTest {
     @Test
     void validateAddPetTest() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id", 0);
-        JsonArray categories = new JsonArray();
-        categories.add(0);
-        categories.add("bobik");
-        jsonObject.addProperty("category", String.valueOf(categories));
+        jsonObject.addProperty("id", 541235252);
 
+        JsonObject categories = new JsonObject();
+        categories.addProperty("id",0);
+        categories.addProperty("name", "bobik");
+        jsonObject.add("category", categories);
         jsonObject.addProperty("name", "doggie");
 
         JsonArray photo = new JsonArray();
         photo.add("tttttttt");
+        photo.add("43242424");
         jsonObject.addProperty("photoUrls", String.valueOf(photo));
+
         JsonArray tagsAdd = new JsonArray();
-        tagsAdd.add(0);
-        tagsAdd.add("tobik");
+        JsonObject tagsObject = new JsonObject();
+        tagsObject.addProperty("id", 0);
+        tagsObject.addProperty("name", "Sobaka");
+
+        JsonObject tagsObject1 = new JsonObject();
+        tagsObject1.addProperty("id", 12);
+        tagsObject1.addProperty("name", "pesik");
+        tagsAdd.add(tagsObject);
+        tagsAdd.add(tagsObject1);
         jsonObject.addProperty("tags", String.valueOf(tagsAdd));
 
-        jsonObject.addProperty("status", "available");
 
-        Response response = RestAssured.given().log().all().post("https://petstore.swagger.io/v2/pet");
+        jsonObject.addProperty("status", "available");
+        System.out.println(jsonObject.toString());
+
+        Response response = RestAssured.given().log().all().body(jsonObject.toString()).post("https://petstore.swagger.io/v2/pet");
         System.out.println(response.asString());
         response.then().body(matchesJsonSchemaInClasspath("petAddSchema.json").using(runJsonSchemaFactory()));
     }

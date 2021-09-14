@@ -1,6 +1,6 @@
 {
   "title": "Validate Add new pet",
-  "description": " Validate Add new pet",
+  "description": "Validate Add new pet",
   "type": "object",
   "required": [
     "id",
