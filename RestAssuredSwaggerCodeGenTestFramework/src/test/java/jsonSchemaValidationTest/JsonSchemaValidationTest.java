@@ -48,6 +48,25 @@ public class JsonSchemaValidationTest {
 
     @Test
     void validateAddPetTest() {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("id", 0);
+        JsonArray categories = new JsonArray();
+        categories.add(0);
+        categories.add("bobik");
+        jsonObject.addProperty("category", String.valueOf(categories));
+
+        jsonObject.addProperty("name", "doggie");
+
+        JsonArray photo = new JsonArray();
+        photo.add("tttttttt");
+        jsonObject.addProperty("photoUrls", String.valueOf(photo));
+        JsonArray tagsAdd = new JsonArray();
+        tagsAdd.add(0);
+        tagsAdd.add("tobik");
+        jsonObject.addProperty("tags", String.valueOf(tagsAdd));
+
+        jsonObject.addProperty("status", "available");
+
         Response response = RestAssured.given().log().all().post("https://petstore.swagger.io/v2/pet");
         System.out.println(response.asString());
         response.then().body(matchesJsonSchemaInClasspath("petAddSchema.json").using(runJsonSchemaFactory()));

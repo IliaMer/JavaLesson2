@@ -13,11 +13,22 @@
   "minProperties": 6,
   "properties": {
     "id": {
-      "type": "integer"
+      "type": "number"
     },
     "category": {
       "type": "object",
-      "required": ["id", "name"]
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
     },
     "name": {
       "type": "string"
@@ -34,10 +45,13 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "name"],
+        "required": [
+          "id",
+          "name"
+        ],
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "number"
           },
           "name": {
             "type": "string"
