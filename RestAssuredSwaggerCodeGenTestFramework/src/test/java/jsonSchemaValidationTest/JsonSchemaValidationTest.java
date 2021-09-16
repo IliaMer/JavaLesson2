@@ -49,7 +49,7 @@ public class JsonSchemaValidationTest {
     @Test
     void validateAddPetTest() {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("id", 541235252);
+        jsonObject.addProperty("id", 0);
 
         JsonObject categories = new JsonObject();
         categories.addProperty("id",0);
@@ -59,7 +59,6 @@ public class JsonSchemaValidationTest {
 
         JsonArray photo = new JsonArray();
         photo.add("tttttttt");
-        photo.add("43242424");
         jsonObject.addProperty("photoUrls", String.valueOf(photo));
 
         JsonArray tagsAdd = new JsonArray();
@@ -68,7 +67,7 @@ public class JsonSchemaValidationTest {
         tagsObject.addProperty("name", "Sobaka");
 
         JsonObject tagsObject1 = new JsonObject();
-        tagsObject1.addProperty("id", 12);
+        tagsObject1.addProperty("id", 0);
         tagsObject1.addProperty("name", "pesik");
         tagsAdd.add(tagsObject);
         tagsAdd.add(tagsObject1);
@@ -76,10 +75,13 @@ public class JsonSchemaValidationTest {
 
 
         jsonObject.addProperty("status", "available");
-        System.out.println(jsonObject.toString());
+//        System.out.println(jsonObject.toString());
 
-        Response response = RestAssured.given().log().all().body(jsonObject.toString()).post("https://petstore.swagger.io/v2/pet");
-        System.out.println(response.asString());
+        Response response = RestAssured.given()
+                .log().all()
+                .contentType("application/json")
+                .body(jsonObject.toString())
+                .post("https://petstore.swagger.io/v2/pet");
         response.then().body(matchesJsonSchemaInClasspath("petAddSchema.json").using(runJsonSchemaFactory()));
     }
 
